@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="checkNote"
+            type= "com.barmej.notedeveloper2.data.entity.CheckNote" />
+    </data>
+<androidx.cardview.widget.CardView
+    android:id="@+id/list_card_view_check_note"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="8dp"
+    android:backgroundTint="@{checkNote.color}">
+
+    <TextView
+        android:id="@+id/text_note_list_view_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="150dp"
+        android:layout_gravity="right"
+        android:textSize="20dp"
+        android:padding="4dp"
+        android:text="@{checkNote.textNote}"/>
+
+    <CheckBox
+        android:id="@+id/check_list_view_item_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="@{checkNote.checkNote}"/>
+
+</androidx.cardview.widget.CardView>
+</layout>

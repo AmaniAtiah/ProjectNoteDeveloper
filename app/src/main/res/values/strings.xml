@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">NoteDeveloper2</string>
+
+    <string name="add_new_item_description">يمكنك  إضافة ملاحظة إلى القائمة و اختيار نوع ولون الملاحظة.</string>
+    <string name="add">اضافة</string>
+    <string name="add_note_text">أضف ملاحظة</string>
+    <string name="add_image">اضافة صورة</string>
+
+    <string name="select_picture">اختر صورة</string>
+    <string name="take_picture">التقط صورة</string>
+    <string name="read_permission_needed_to_access_files">صلاحية الوصول الى الملفات مطلوبة لقراءة الصور من جهارك</string>
+    <string name="camera_access_is_required">صلاحية الوصول الى الكاميرا مطلوبة</string>
+    <string name="failed_to_get_image">فشل في الوصول الى الصورة</string>
+    <string name="failed_to_take_image">فشل في التقاط الصورة</string>
+    <string name="note">يجب اضافة ملاحظة"</string>
+    <string name="add_photo_note">اضافة صورة وملاحظة</string>
+    <string name="add_note">اضف ملاحظة</string>
+    <string name="delete_confirmation">هل انت متأكد من ازالة العنصر من  القائمة</string>
+    <string name="confirm">تأكيد الازالة</string>
+    <string name="cancel">الغاء الازالة</string>
+    <string name="edit">تعديل</string>
+
+    <array name="image">
+        <item>اخذ صورة</item>
+        <item>مكتبة الصور</item>
+    </array>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="note"
+            type="com.barmej.notedeveloper2.data.entity.Note" />
+    </data>
+<androidx.cardview.widget.CardView
+    android:id="@+id/list_card_view_note"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="8dp"
+    android:backgroundTint="@{note.color}">
+
+    <TextView
+        android:id="@+id/text_list_view_item_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="150dp"
+        android:textSize="20dp"
+        android:layout_gravity="right"
+        android:text="@{note.textNote}"
+        android:padding="4dp"
+      />
+
+</androidx.cardview.widget.CardView>
+</layout>
