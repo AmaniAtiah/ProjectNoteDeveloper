@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
@@ -81,7 +83,7 @@ public class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder,final int position) {
         if(getItemViewType(position) == Constants.NOTE_DATA){
             Object obj =  mItems.get(position);
             TextNoteViewHolder textNoteViewHolder = (TextNoteViewHolder) holder;
@@ -94,11 +96,24 @@ public class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imageNoteViewHolder.bind(obj);
             imageNoteViewHolder.position = position;
 
-        } else if(getItemViewType(position) == Constants.CHECK_DATA){
-            Object obj =  mItems.get(position);
+        } else if(getItemViewType(position) == Constants.CHECK_DATA) {
+            Object obj = mItems.get(position);
             CheckNoteViewHolder checkNoteViewHolder = (CheckNoteViewHolder) holder;
             checkNoteViewHolder.bind(obj);
             checkNoteViewHolder.position = position;
+
+            checkNoteViewHolder.noteCheckCb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CheckNote checkNote = (CheckNote) mItems.get(position);
+                    if (checkNote.getCheckNote()) {
+                        checkNote.setCheckNote(false);
+                    } else {
+                        checkNote.setCheckNote(true);
+                    }
+                }
+            });
+
         }
     }
 
@@ -111,7 +126,7 @@ public class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private int position;
         final ItemNoteBinding binding;
 
-        public  TextNoteViewHolder(ItemNoteBinding binding, final ItemClickListenerNote mItemClickListenerNote, final ItemLongClickListener mItemLongClickListener) {
+        public  TextNoteViewHolder(final ItemNoteBinding binding,final ItemClickListenerNote mItemClickListenerNote,final ItemLongClickListener mItemLongClickListener) {
             super(binding.getRoot());
             this.binding = binding;
 
@@ -167,11 +182,14 @@ public class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
      class CheckNoteViewHolder extends RecyclerView.ViewHolder {
         private int position;
+        private CheckBox noteCheckCb;
         final ItemNoteCheckBinding binding;
 
         public CheckNoteViewHolder(ItemNoteCheckBinding binding, final ItemClickListenerCheckNote mItemClickListenerCheckNote, final ItemLongClickListener mItemLongClickListener){
             super(binding.getRoot());
             this.binding = binding;
+
+            noteCheckCb = itemView.findViewById(R.id.check_list_view_item_note);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -193,6 +211,7 @@ public class NoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         void bind(Object obj) {
             binding.setVariable(BR.checkNote, obj);
         }
+
     }
 
 }

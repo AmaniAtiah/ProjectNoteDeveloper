@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.content.DialogInterface;
@@ -24,6 +25,9 @@ import com.barmej.notedeveloper2.viewmodel.NoteViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.barmej.notedeveloper2.BR.checkNote;
+import static com.barmej.notedeveloper2.BR.note;
+
 public class MainActivity extends AppCompatActivity {
     private static final int ADD_NOTE = 142;
     private static final int EDIT_NOTE = 140;
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Note> mItems;
     private NoteAdapter mAdapter;
     NoteViewModel noteViewModel;
+    private int id;
+    private Note note;
 
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
 
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
+        mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -75,12 +81,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         getAllNotes();
+
     }
 
     private void startAddNewNoteActivity() {
         Intent intent = new Intent(MainActivity.this, AddNewNoteActivity.class);
         startActivityForResult(intent, ADD_NOTE);
-
     }
 
     @Override
@@ -90,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == ADD_NOTE) {
             if (resultCode == RESULT_OK && data != null) {
 
-                Note note = data.getParcelableExtra(Constants.NOTE);
+                note = data.getParcelableExtra(Constants.NOTE);
                 if(note instanceof PhotoNote) {
                     noteViewModel.insertPhotoNote((PhotoNote) note);
                 }else if (note instanceof CheckNote) {
@@ -101,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (requestCode == EDIT_NOTE) {
             if (resultCode == RESULT_OK && data != null) {
-                Note note = data.getParcelableExtra(Constants.NOTE);
-                int id = data.getIntExtra(Constants.POSITION, -1);
+                note = data.getParcelableExtra(Constants.NOTE);
+                id = data.getIntExtra(Constants.POSITION, -1);
                 note.setId(id);
                 if(note instanceof PhotoNote) {
                     noteViewModel.updatePhotoNote((PhotoNote) note);

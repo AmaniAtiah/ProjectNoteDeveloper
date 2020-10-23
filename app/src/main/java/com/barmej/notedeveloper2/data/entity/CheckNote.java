@@ -12,6 +12,7 @@ public class CheckNote extends Note {
         this.checkNote = checkNote;
     }
 
+
     protected CheckNote(Parcel in) {
         super(in);
         checkNote = in.readByte() != 0;
@@ -41,6 +42,7 @@ public class CheckNote extends Note {
     public int describeContents() {
         return 0;
     }
+
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {

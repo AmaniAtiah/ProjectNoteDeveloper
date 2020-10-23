@@ -22,7 +22,7 @@
         android:layout_height="70dp"
         android:scaleType="fitXY"
         android:maxHeight="150dp"
-        android:layout_gravity="left"
+        android:layout_gravity="center_horizontal"
         android:padding="4dp"
         app:image="@{photoNote.imageNote}" />
 
